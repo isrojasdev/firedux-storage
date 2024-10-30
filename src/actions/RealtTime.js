@@ -8,12 +8,10 @@ import {
   getDoc,
 } from "firebase/firestore";
 
-import { getCollectionRealTime } from "../Redux/Features/Firestore/firestoreSlice";
+import { getCollectionRealTime } from "../slices/firestoreSlice.js";
 
-import firebase from "../firebase";
-import store from "../store";
-
-const db = firebase.firestore;
+import { firebaseInstance } from "../firebase/firebase.js";
+import store from "../store/store.js";
 
 export const obtenerRealTime = async (
   collectionName,
@@ -23,7 +21,10 @@ export const obtenerRealTime = async (
   storeAs = false,
   keyReference = []
 ) => {
+  const db = firebaseInstance.firestore;
   let parametrosQuery = {};
+
+  console.log({ firebaseInstance, db });
   try {
     // evaluamos si tiene condicional where para estructurarla
     if (condicionWhere) {
@@ -38,7 +39,7 @@ export const obtenerRealTime = async (
           ));
         });
       } else {
-        console.log("noormal");
+        console.log("normal1");
         parametrosQuery.where = where(
           condicionWhere[0],
           condicionWhere[1],
@@ -88,6 +89,8 @@ export const obtenerRealTime = async (
               ...doc.data(),
               id: doc.id,
             };
+
+            console.log({ document });
 
             document[keyReference] = references;
 

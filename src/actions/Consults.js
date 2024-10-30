@@ -1,5 +1,5 @@
-import { obtenerCollecion } from "./Database";
-import { obtenerRealTime } from "./RealtTime";
+// import { obtenerCollecion } from "./Database.js";
+import { obtenerRealTime } from "./RealtTime.js";
 
 export const consultas = (listaConsulta, consultaActual = 0) => {
   let numeroConsultas = listaConsulta.length;

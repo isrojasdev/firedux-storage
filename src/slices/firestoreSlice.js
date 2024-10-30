@@ -16,8 +16,8 @@ import {
   doc,
 } from "firebase/firestore";
 
-import firebase from "../../../firebase";
-const db = firebase.firestore;
+import { firebaseInstance } from "../firebase/firebase.js";
+const db = firebaseInstance.firestore;
 
 const firestoreAdapter = createEntityAdapter();
 

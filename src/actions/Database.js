@@ -7,9 +7,9 @@ import {
   setDocument,
   deleteDocument,
   editDocument,
-} from "../Redux/Features/Firestore/firestoreSlice";
+} from "../slices/firestoreSlice.js";
 
-import store from "../store";
+import store from "../store/store.js";
 // import useRealtime from "../Hooks/useRealtime";
 // import useStorage from "../Hooks/useStorage";
 

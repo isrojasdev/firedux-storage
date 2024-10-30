@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import firestoreReducer from "./Redux/Features/Firestore/firestoreSlice";
-import storageReducer from "./Redux/Features/Storage/storageSlice";
+import firestoreReducer from "../slices/firestoreSlice.js";
+import storageReducer from "../slices/storageSlice.js";
 
 const store = configureStore({
   reducer: {
