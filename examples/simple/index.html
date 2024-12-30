@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Firedux Storage</title>
 </head>
-
 <body>
   <h1>Hola, Webpack!</h1>
-  <button>Consultar DB</button>
-  <script src="/dist/main.js"></script>
-  <script>
-    // import * as firedux from '/dist/main.js';
+  <button onclick="buscar()">Consultar DB</button>
+  <p id="firestore"></p>
+  
+  <!-- Cargar el archivo generado por Webpack Dev Server -->
+  <!-- <script src="/dist/main.js"></script> -->
+  <script src="http://localhost:3000/main.js"></script>
 
-    // Inicializa Firebase con la configuración del usuario (solo una vez)
+  <script>
+    const {store} = firedux
+
+    // Configuración de Firebase del usuario
     const userConfig = {
       apiKey: "AIzaSyDr-VvZHE5j1D-Hih_n2I4e09bowApMBZ8",
       authDomain: "aga-carpetas.firebaseapp.com",
@@ -24,41 +27,29 @@
       appId: "1:711595800028:web:3271b41bed7ed198098b19",
     };
 
-    // Inicializar Firebase (esto debe hacerse una vez, posiblemente en el punto de entrada de tu aplicación)
-    firedux.initializeFirebase(userConfig)
+    // Inicializa Firebase
+    firedux.initializeFirebase(userConfig);
 
-    firedux.consultas([
-      {
-        consulta: "obtenerRealTime",
-        collectionName: "subCategorias",
-      },
-      {
-        consulta: "obtenerRealTime",
-        collectionName: "productos",
-        keyReference: ["id_materiales"],
-        condicionalLimit: 4,
-      },
-      {
-        consulta: "obtenerRealTime",
-        collectionName: "marcas",
-        condicionalOrderBy: ["nombre", "asc"],
-      },
-      {
-        consulta: "obtenerRealTime",
-        collectionName: "materiales",
-        condicionalOrderBy: ["nombre", "asc"],
-      },
-      {
-        consulta: "obtenerRealTime",
-        collectionName: "productos",
-        storeAs: "promociones",
-        condicionWhere: [
-          ["descuento", "!=", false],
-          ["precioMayoreo", "==", "123"],
-        ],
-      },
-    ])
+    const render = () => {
+      console.log("data => ", store.getState().firestore.collection);
+
+      document.getElementById('firestore').innerText = store.getState().firestore.collection;
+    };
+
+    render()
+
+    store.subscribe(render);
+    
+    function buscar() {
+      // Ejecuta consultas
+      firedux.executeQueries([
+        {
+          queryType: "obtainRealTime",
+          collectionName: "subCategorias",
+        },
+        // Agrega las demás consultas aquí...
+      ]);
+    }
   </script>
 </body>
-
 </html>
