@@ -1,0 +1,12 @@
+{
+    "name": "firedux-storage-monorepo",
+    "private": true,
+    "workspaces": [
+      "packages/core",
+      "packages/examples/*"
+    ],
+    "scripts": {
+      "build": "npm run build --workspace=packages/core"
+    }
+  }
+  
