@@ -2,7 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/firedux-storage.svg)](https://www.npmjs.com/package/firedux-storage)
 [![Code Style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://standardjs.com)
-[![License](https://img.shields.io/github/license/YOUR_GITHUB_USERNAME/firedux-storage.svg)](https://github.com/isrojasdev/firedux-storage/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/isrojasdev/firedux-storage.svg)](https://github.com/isrojasdev/firedux-storage/blob/main/LICENSE)
 
 
 **Firedux Storage** is a library that simplifies the management of **Firestore** with **Redux Toolkit**. It enables **real-time queries** (`onSnapshot`) and **collection fetches** (`getDocs`), providing a modular approach for multiple frameworks.
