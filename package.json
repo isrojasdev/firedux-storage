@@ -1,0 +1,16 @@
+{
+  "name": "firedux-storage",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w core",
+    "build": "npm run build -w core",
+    "test": "npm run test -w core"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "firebase": "^11.4.0"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "firedux-storage",
+  "version": "0.8.0",
+  "description": "JS library for Redux management with Firebase without the need for many configurations",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "type": "module",
+  "private": true,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c --watch",
+    "test": "echo \"No tests defined yet\" && exit 1"
+  },
+  "keywords": [
+    "redux",
+    "firebase",
+    "storage"
+  ],
+  "author": "Oscar Lopez",
+  "license": "MIT",
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.6.1",
+    "firebase": "^11.4.0",
+    "redux": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.35.0"
+  }
+}
