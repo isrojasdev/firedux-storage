@@ -19,14 +19,13 @@ export default {
     },
   ],
   plugins: [
-    resolve(),
+    resolve({
+      browser: true,
+    }),
     commonjs(),
     json(),
     babel({ babelHelpers: "bundled" }),
     terser(), // Minifica el código
-    nodeResolve({
-      browser: true,
-    }),
     commonjs({
       include: "node_modules/**",
     }),

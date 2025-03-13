@@ -1,14 +1,18 @@
 {
   "name": "firedux-storage",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "JS library for Redux management with Firebase without the need for many configurations",
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "type": "module",
-  "private": true,
+  "exports": {
+    "import": "./dist/index.esm.js",
+    "require": "./dist/index.js"
+  },
   "files": [
-    "dist"
+    "dist/**/*"
   ],
+  "private": false,
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c --watch",
