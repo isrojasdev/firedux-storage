@@ -6,6 +6,12 @@ import json from "@rollup/plugin-json";
 
 export default {
   input: "src/index.js",
+  watch: {
+    clearScreen: false,
+    include: 'src/**',
+    buildDelay: 500,
+    skipWrite: false
+  },
   output: [
     {
       file: "dist/index.js",

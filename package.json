@@ -5,9 +5,9 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev -w core",
-    "build": "npm run build -w core",
-    "test": "npm run test -w core"
+    "dev": "npm -w packages/core run dev & npm -w packages/example-react start",
+    "dev:core": "npm -w packages/core run dev",
+    "dev:react": "npm -w packages/example-react start"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
