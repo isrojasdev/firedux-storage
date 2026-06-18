@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 Format: [Semantic Versioning](https://semver.org/) — `MAJOR.MINOR.PATCH`
 
+> **Regla:** Toda implementación que cambie comportamiento observable debe tener entrada aquí antes del commit.
+> Para cambios breaking, añadir subsección `### Migration` con pasos exactos.
+
+---
+
+## [0.9.0] — 2026-06-18
+
+### Added
+- Zod validation layer: register schemas per collection via `initializeFiredux(config, { schemas: {} })`
+- `validateDocument` runs before `addDocument` and `updateDocument`; reads are not validated
+- Clear error format: `[firedux-storage] Validation failed for collection "X" (queryType):\n  - field: message`
+- Re-export `z` from `firedux-storage` so consumers can import Zod without installing it separately
+- `schemaRegistry.js` singleton (`getSchema`, `registerSchemas`, `clearRegistry`)
+- Backward compatible: collections without a registered schema behave exactly as before
+
 ---
 
 ## [0.8.1] — 2025-03-13
@@ -37,19 +52,3 @@ Format: [Semantic Versioning](https://semver.org/) — `MAJOR.MINOR.PATCH`
 - Basic project structure as yarn workspace monorepo
 - `packages/core` as the publishable library
 - `packages/example-react` as CRA demo
-
----
-
-## [0.9.0] — 2026-06-18
-
-### Added
-- Zod validation layer: register schemas per collection via `initializeFiredux(config, { schemas: {} })`
-- `validateDocument` runs before `addDocument` and `updateDocument`; reads are not validated
-- Clear error format: `[firedux-storage] Validation failed for collection "X" (queryType): - field: message`
-- Re-export `z` from `firedux-storage` so consumers can import Zod without installing it separately
-- `schemaRegistry.js` singleton (`getSchema`, `registerSchemas`, `clearRegistry`)
-- Backward compatible: collections without a registered schema behave exactly as before
-
----
-
-## [0.8.1] — 2025-03-13

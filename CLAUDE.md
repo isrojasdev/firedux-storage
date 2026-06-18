@@ -125,11 +125,17 @@ test: add auth.test.js with mocked Firebase
 BREAKING CHANGE: rename removeDocument to deleteDocument in executeQueries
 ```
 
+### CHANGELOG rule
+
+**Every commit that changes observable behavior must update `CHANGELOG.md` first.** No exceptions for features, bugfixes, or API changes. Docs-only and chore commits (config tweaks, dependency bumps with no behavior change) may skip it.
+
+For breaking changes, the CHANGELOG entry must include a `### Migration` subsection with exact steps (what to rename, what signatures changed, what to update in user code).
+
 ### Release steps
 
 1. `npm -w packages/core run build`
 2. Bump `version` in `packages/core/package.json`
-3. Update `CHANGELOG.md` (add entry for the new version)
+3. Add versioned entry to `CHANGELOG.md` (move from Unreleased if needed)
 4. Update `ROADMAP.md` (mark completed tasks `[x]`, update "Estado actual" and "Versión en npm")
 5. Update `CLAUDE.md` → "Current phase" section if the phase changed
 6. Commit: `chore: release vX.X.X`
