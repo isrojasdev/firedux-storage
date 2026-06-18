@@ -62,6 +62,9 @@ state.firestore.document              // single fetched document
 state.firestore.status                // "idle" | "loading" | "succeeded" | "failed"
 state.storage.url                     // download URL after file upload
 state.storage.status
+state.auth.user                       // { uid, email, displayName, photoURL, emailVerified } | null
+state.auth.status
+state.auth.error
 ```
 
 `storeAs` (optional query param) controls the key under `state.firestore.collection`; defaults to `collectionName`.
@@ -70,7 +73,7 @@ state.storage.status
 - `utils/buildQueryParameters.js` — assembles Firestore `query()` from `whereCondition` (single or array of conditions), `limitCondition`, `orderByCondition`
 - `utils/resolveReferences.js` — auto-resolves Firestore `DocumentReference` fields listed in `keyReference` array
 
-**Firebase Storage and Auth** (`slices/storageSlice.js`, `actions/auth.js`) exist but are **not wired into `executeQueries`**. They export thunks (`setFile`, `deleteFile`) and helpers (`singInWithGoogle`, `singInWithFacebook`) that consumers dispatch or call directly.
+**Auth** (`slices/authSlice.js`, `actions/auth.js`) and **Storage** (`slices/storageSlice.js`, `actions/Storage.js`) are fully wired into `executeQueries`. Auth queryTypes: `signInEmail`, `signUpEmail`, `signInGoogle`, `signInFacebook`, `signOut`, `resetPassword`. Storage queryTypes: `uploadFile`, `deleteFile`.
 
 ### Build (packages/core)
 
@@ -144,5 +147,5 @@ For breaking changes, the CHANGELOG entry must include a `### Migration` subsect
 
 ## Current phase
 
-**Active phase:** FASE 2 — Auth completo + Storage integrado (versión objetivo: 1.0.0)
+**Active phase:** FASE 3 — Testing con Vitest (versión objetivo: 1.0.1)
 See [ROADMAP.md](./ROADMAP.md) for full roadmap and task status.

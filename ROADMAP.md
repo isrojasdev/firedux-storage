@@ -5,9 +5,9 @@
 
 ## Estado actual
 
-**Fase activa:** FASE 2 — Auth completo + Storage integrado
-**Versión en npm:** 0.9.0
-**Próximo bump:** 1.0.0 (major) al terminar Fase 2
+**Fase activa:** FASE 3 — Testing con Vitest
+**Versión en npm:** 0.9.0 → próximo release: 1.0.0
+**Próximo bump:** 1.0.0 (major) — listo para publicar
 
 ---
 
@@ -36,16 +36,16 @@
 
 ---
 
-## FASE 2 — Auth completo + Storage integrado
+## FASE 2 — Auth completo + Storage integrado ✅
 **Objetivo:** Completar el feature set de Firebase. Primera versión estable con todas las features.
 **Versión objetivo:** 1.0.0
 
-- [ ] Crear `packages/core/src/slices/authSlice.js`
-- [ ] Completar `actions/auth.js`: email/password, signOut, resetPassword
-- [ ] Integrar Auth (Google + Facebook) al Redux store
-- [ ] Añadir `authReducer` a `store.js`
-- [ ] Exponer Storage en `executeQueries` (`uploadFile`, `deleteFile` queryTypes)
-- [ ] Exponer Auth en `executeQueries` (`signInEmail`, `signInGoogle`, `signOut`, etc.)
+- [x] Crear `packages/core/src/slices/authSlice.js`
+- [x] Completar `actions/auth.js`: email/password, signOut, resetPassword
+- [x] Integrar Auth (Google + Facebook) al Redux store
+- [x] Añadir `authReducer` a `store.js`
+- [x] Exponer Storage en `executeQueries` (`uploadFile`, `deleteFile` queryTypes)
+- [x] Exponer Auth en `executeQueries` (`signInEmail`, `signInGoogle`, `signOut`, etc.)
 
 ---
 

@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import firestoreReducer from "../slices/firestoreSlice.js";
 import storageReducer from "../slices/storageSlice.js";
+import authReducer from "../slices/authSlice.js";
 import { firebaseInstance } from "../firebase/firebase.js";
 
 let store = null;
@@ -17,6 +18,7 @@ export const initializeStore = () => {
     reducer: {
       firestore: firestoreReducer,
       storage: storageReducer,
+      auth: authReducer,
     },
   });
 

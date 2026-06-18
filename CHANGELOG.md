@@ -8,6 +8,44 @@ Format: [Semantic Versioning](https://semver.org/) — `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.0.0] — 2026-06-18
+
+### Added
+- **Auth — email/password:** `signInEmail`, `signUpEmail`, `resetPassword` via `executeQueries`
+- **Auth — OAuth:** `signInGoogle`, `signInFacebook` via `executeQueries`
+- **Auth — session:** `signOut` via `executeQueries`
+- **Firebase Storage:** `uploadFile`, `deleteFile` via `executeQueries`
+- `authSlice.js`: Redux slice with `state.auth.{ user, status, error }`
+- `Storage.js` actions module following the existing `actions/ → slices/` pattern
+- Auth user shape in store: `{ uid, email, displayName, photoURL, emailVerified }`
+
+### Usage examples
+```js
+// Sign in
+await executeQueries([{ queryType: 'signInEmail', email: 'user@example.com', password: '...' }]);
+await executeQueries([{ queryType: 'signInGoogle' }]);
+
+// Upload file
+await executeQueries([{ queryType: 'uploadFile', file, fileName: 'avatar', folder: 'users' }]);
+
+// Delete file
+await executeQueries([{ queryType: 'deleteFile', fileUrl: 'https://...' }]);
+```
+
+### Redux state shape (complete)
+```js
+state.firestore.collection[storeAs]  // Firestore collections
+state.firestore.document             // single document
+state.firestore.status
+state.storage.url                    // last upload download URL
+state.storage.status
+state.auth.user                      // { uid, email, displayName, photoURL, emailVerified }
+state.auth.status
+state.auth.error
+```
+
+---
+
 ## [0.9.0] — 2026-06-18
 
 ### Added

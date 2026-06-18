@@ -1,4 +1,3 @@
-// Import required functions
 import { obtainRealTime } from "./RealTime.js";
 import {
   getDocumentById,
@@ -7,9 +6,28 @@ import {
   removeDocument,
   updateDocument,
 } from "./Database.js";
+import { uploadFile, removeFile } from "./Storage.js";
+import {
+  signInEmail,
+  signUpEmail,
+  signInGoogle,
+  signInFacebook,
+  signOutUser,
+  resetPassword,
+} from "./auth.js";
 import { getSchema } from "../schemas/schemaRegistry.js";
 
 const WRITE_QUERY_TYPES = ["addDocument", "updateDocument"];
+
+// queryTypes that require a collectionName
+const COLLECTION_QUERY_TYPES = [
+  "obtainRealTime",
+  "getDocumentById",
+  "getCollectionData",
+  "addDocument",
+  "removeDocument",
+  "updateDocument",
+];
 
 const validateDocument = (collectionName, queryType, documentData) => {
   const schema = getSchema(collectionName);
@@ -28,51 +46,40 @@ const validateDocument = (collectionName, queryType, documentData) => {
 
 /**
  * Executes a list of queries asynchronously, handling errors individually.
- *
- * @param {Array} queryList - List of queries to be executed.
- * @returns {Promise<Array>} - Resolves when all queries complete, returns results or errors.
+ * @param {Array} queryList - List of query objects to execute.
+ * @returns {Promise<Array>} Results array with { result, status } or { error, status }.
  */
 export const executeQueries = async (queryList) => {
-  // Validate that queryList is an array and contains elements
   if (!Array.isArray(queryList) || queryList.length === 0) {
     console.warn("Invalid query list: Expected a non-empty array.");
     return [];
   }
 
-  // 🚀 Convert queries into promises
   const queryPromises = queryList.map(async (query, index) => {
     try {
-      // Validate query properties
-      if (!query.queryType || !query.collectionName) {
+      if (!query.queryType) {
+        console.warn(`Invalid query at index ${index}: Missing 'queryType'.`);
+        return { error: "Invalid query structure", status: "failed" };
+      }
+
+      if (COLLECTION_QUERY_TYPES.includes(query.queryType) && !query.collectionName) {
         console.warn(
-          `Invalid query at index ${index}: Missing 'queryType' or 'collectionName'.`
+          `Invalid query at index ${index}: '${query.queryType}' requires 'collectionName'.`
         );
         return { error: "Invalid query structure", status: "failed" };
       }
 
-      // Execute query and return result
       const result = await querySelector(query);
-
       return { result, status: "succeeded" };
     } catch (error) {
-      console.error(
-        `Error processing query at index ${index}: ${error.message}`
-      );
+      console.error(`Error processing query at index ${index}: ${error.message}`);
       return { error: error.message, status: "failed" };
     }
   });
 
-  // 🚀 Run all queries in parallel and wait for them to finish
   return Promise.all(queryPromises);
 };
 
-/**
- * Selects and executes the appropriate query based on the query type.
- *
- * @param {Object} query - The query object containing the query type and parameters.
- * @param {string} query.queryType - The type of query to execute.
- * @param {string} query.collectionName - The name of the collection for the query.
- */
 const querySelector = async ({
   queryType,
   collectionName,
@@ -83,14 +90,22 @@ const querySelector = async ({
   storeAs,
   keyReference,
   documentData,
+  // auth params
+  email,
+  password,
+  // storage params
+  file,
+  fileName,
+  folder,
+  fileUrl,
 }) => {
   if (WRITE_QUERY_TYPES.includes(queryType) && documentData) {
     validateDocument(collectionName, queryType, documentData);
   }
 
   switch (queryType) {
+    // ── Firestore ──────────────────────────────────────────────────────────
     case "obtainRealTime":
-      // Executes a real-time query with optional conditions
       await obtainRealTime(
         collectionName,
         whereCondition || false,
@@ -102,11 +117,9 @@ const querySelector = async ({
       break;
 
     case "getDocumentById":
-      // Fetches a single document by ID
       return await getDocumentById({ collectionName, id: documentId });
 
     case "getCollectionData":
-      // Fetches a collection with optional filters
       return await getCollectionData(
         collectionName,
         whereCondition || false,
@@ -117,7 +130,6 @@ const querySelector = async ({
       );
 
     case "addDocument":
-      // Adds a new document to the collection
       if (!documentData) {
         console.warn("Missing 'documentData' for addDocument query.");
         return;
@@ -125,7 +137,6 @@ const querySelector = async ({
       return await addDocument({ collectionName, state: documentData });
 
     case "removeDocument":
-      // Deletes a document by ID
       if (!documentId) {
         console.warn("Missing 'documentId' for removeDocument query.");
         return;
@@ -133,21 +144,47 @@ const querySelector = async ({
       return await removeDocument({ collectionName, id: documentId });
 
     case "updateDocument":
-      // Updates an existing document by ID
       if (!documentId || !documentData) {
-        console.warn(
-          "Missing 'documentId' or 'documentData' for updateDocument query."
-        );
+        console.warn("Missing 'documentId' or 'documentData' for updateDocument query.");
         return;
       }
-      return await updateDocument({
-        collectionName,
-        id: documentId,
-        state: documentData,
-      });
+      return await updateDocument({ collectionName, id: documentId, state: documentData });
+
+    // ── Auth ───────────────────────────────────────────────────────────────
+    case "signInEmail":
+      return await signInEmail({ email, password });
+
+    case "signUpEmail":
+      return await signUpEmail({ email, password });
+
+    case "signInGoogle":
+      return await signInGoogle();
+
+    case "signInFacebook":
+      return await signInFacebook();
+
+    case "signOut":
+      return await signOutUser();
+
+    case "resetPassword":
+      return await resetPassword({ email });
+
+    // ── Storage ────────────────────────────────────────────────────────────
+    case "uploadFile":
+      if (!file || !fileName || !folder) {
+        console.warn("Missing 'file', 'fileName', or 'folder' for uploadFile query.");
+        return;
+      }
+      return await uploadFile({ file, fileName, folder });
+
+    case "deleteFile":
+      if (!fileUrl) {
+        console.warn("Missing 'fileUrl' for deleteFile query.");
+        return;
+      }
+      return await removeFile({ fileUrl });
 
     default:
-      // Log a warning for unrecognized query types
       console.warn(`Unrecognized query type: ${queryType}`);
       break;
   }

@@ -1,74 +1,41 @@
 import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  FacebookAuthProvider,
-} from "firebase/auth";
+  signInWithEmailThunk,
+  signUpWithEmailThunk,
+  signInWithGoogleThunk,
+  signInWithFacebookThunk,
+  signOutThunk,
+  resetPasswordThunk,
+} from "../slices/authSlice.js";
+import { getStore } from "../store/store.js";
 
-export const singInWithGoogle = async () => {
-  let response = {};
+const dispatch = (thunk) => getStore().dispatch(thunk);
 
-  const auth = getAuth();
-  const provider = new GoogleAuthProvider();
-
-  await signInWithPopup(auth, provider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      // const credential = GoogleAuthProvider.credentialFromResult(result);
-      // const token = credential.accessToken;
-
-      // The signed-in user info.
-      const user = result.user;
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
-
-      response = { success: true, ...user };
-    })
-    .catch((error) => {
-      // // Handle Errors here.
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // // The email of the user's account used.
-      // const email = error.customData.email;
-      // // The AuthCredential type that was used.
-      // const credential = GoogleAuthProvider.credentialFromError(error);
-      // // ...
-
-      response = { success: false, data: error.message };
-    });
-
-  return response;
+export const signInEmail = async ({ email, password }) => {
+  const res = await dispatch(signInWithEmailThunk({ email, password }));
+  return res.payload;
 };
 
-export const singInWithFacebook = async () => {
-  let response = {};
+export const signUpEmail = async ({ email, password }) => {
+  const res = await dispatch(signUpWithEmailThunk({ email, password }));
+  return res.payload;
+};
 
-  const provider = new FacebookAuthProvider();
+export const signInGoogle = async () => {
+  const res = await dispatch(signInWithGoogleThunk());
+  return res.payload;
+};
 
-  const auth = getAuth();
-  await signInWithPopup(auth, provider)
-    .then((result) => {
-      // The signed-in user info.
-      const user = result.user;
+export const signInFacebook = async () => {
+  const res = await dispatch(signInWithFacebookThunk());
+  return res.payload;
+};
 
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      const credential = FacebookAuthProvider.credentialFromResult(result);
-      const accessToken = credential.accessToken;
+export const signOutUser = async () => {
+  const res = await dispatch(signOutThunk());
+  return res.payload;
+};
 
-      // IdP data available using getAdditionalUserInfo(result)
-      response = { success: true, ...user };
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = FacebookAuthProvider.credentialFromError(error);
-
-      response = { success: false, errorCode, errorMessage, email, credential };
-    });
-
-  return response;
+export const resetPassword = async ({ email }) => {
+  const res = await dispatch(resetPasswordThunk({ email }));
+  return res.payload;
 };
