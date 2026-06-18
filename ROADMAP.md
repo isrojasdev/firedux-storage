@@ -5,9 +5,9 @@
 
 ## Estado actual
 
-**Fase activa:** FASE 1 — Capa de validación con Zod
-**Versión en npm:** 0.8.1
-**Próximo bump:** 0.9.0 (minor) al terminar Fase 1
+**Fase activa:** FASE 2 — Auth completo + Storage integrado
+**Versión en npm:** 0.9.0
+**Próximo bump:** 1.0.0 (major) al terminar Fase 2
 
 ---
 
@@ -23,16 +23,16 @@
 
 ---
 
-## FASE 1 — Capa de validación con Zod
+## FASE 1 — Capa de validación con Zod ✅
 **Objetivo:** Validar datos antes de writes sin romper la API existente.
 **Versión objetivo:** 0.9.0
 
-- [ ] Añadir `zod` a dependencies en `packages/core/package.json`
-- [ ] Crear `packages/core/src/schemas/schemaRegistry.js` (Map singleton)
-- [ ] Actualizar `initializeFiredux(config, options = {})` — aceptar `options.schemas`
-- [ ] Integrar validación en `querySelector` antes del switch (solo writes)
-- [ ] Formato de error claro: colección + queryType + issues de Zod
-- [ ] Verificar backward compatibility (sin schema = comportamiento actual)
+- [x] Añadir `zod` a dependencies en `packages/core/package.json`
+- [x] Crear `packages/core/src/schemas/schemaRegistry.js` (Map singleton)
+- [x] Actualizar `initializeFiredux(config, options = {})` — aceptar `options.schemas`
+- [x] Integrar validación en `querySelector` antes del switch (solo writes)
+- [x] Formato de error claro: colección + queryType + issues de Zod
+- [x] Verificar backward compatibility (sin schema = comportamiento actual)
 
 ---
 

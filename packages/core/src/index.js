@@ -3,6 +3,9 @@ import { initializeStore } from "./store/store.js";
 // Functions
 import { executeQueries } from "./actions/Queries.js";
 import { initializeFirebase } from "./firebase/firebase.js";
+import { registerSchemas } from "./schemas/schemaRegistry.js";
+
+export { z } from "zod";
 
 // Firebase Initialization Wrapper
 let store = null;
@@ -10,9 +13,14 @@ let store = null;
 /**
  * Initializes Firedux Storage with Firebase.
  * @param {Object} firebaseConfig - Firebase configuration object.
+ * @param {Object} [options={}] - Optional configuration.
+ * @param {Object} [options.schemas] - Zod schemas keyed by collection name.
  */
-const initializeFiredux = (firebaseConfig) => {
+const initializeFiredux = (firebaseConfig, options = {}) => {
   initializeFirebase(firebaseConfig);
+  if (options.schemas) {
+    registerSchemas(options.schemas);
+  }
   store = initializeStore();
 };
 

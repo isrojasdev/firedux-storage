@@ -40,10 +40,16 @@ Format: [Semantic Versioning](https://semver.org/) — `MAJOR.MINOR.PATCH`
 
 ---
 
-## [Unreleased]
+## [0.9.0] — 2026-06-18
 
 ### Added
-- `ROADMAP.md` — living roadmap document with phase tracking
-- `CLAUDE.md` — guidance for Claude Code with architecture, design principles, versioning policy and release process
-- Adopted Conventional Commits format
-- Defined versioning policy: 1.0.0 targets feature-complete (Firestore + Storage + Auth)
+- Zod validation layer: register schemas per collection via `initializeFiredux(config, { schemas: {} })`
+- `validateDocument` runs before `addDocument` and `updateDocument`; reads are not validated
+- Clear error format: `[firedux-storage] Validation failed for collection "X" (queryType): - field: message`
+- Re-export `z` from `firedux-storage` so consumers can import Zod without installing it separately
+- `schemaRegistry.js` singleton (`getSchema`, `registerSchemas`, `clearRegistry`)
+- Backward compatible: collections without a registered schema behave exactly as before
+
+---
+
+## [0.8.1] — 2025-03-13

@@ -138,5 +138,5 @@ BREAKING CHANGE: rename removeDocument to deleteDocument in executeQueries
 
 ## Current phase
 
-**Active phase:** FASE 1 — Capa de validación con Zod (versión objetivo: 0.9.0)
+**Active phase:** FASE 2 — Auth completo + Storage integrado (versión objetivo: 1.0.0)
 See [ROADMAP.md](./ROADMAP.md) for full roadmap and task status.

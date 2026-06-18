@@ -7,6 +7,24 @@ import {
   removeDocument,
   updateDocument,
 } from "./Database.js";
+import { getSchema } from "../schemas/schemaRegistry.js";
+
+const WRITE_QUERY_TYPES = ["addDocument", "updateDocument"];
+
+const validateDocument = (collectionName, queryType, documentData) => {
+  const schema = getSchema(collectionName);
+  if (!schema) return;
+
+  const result = schema.safeParse(documentData);
+  if (!result.success) {
+    const issues = result.error.issues
+      .map((i) => `  - ${i.path.length ? i.path.join(".") + ": " : ""}${i.message}`)
+      .join("\n");
+    throw new Error(
+      `[firedux-storage] Validation failed for collection "${collectionName}" (${queryType}):\n${issues}`
+    );
+  }
+};
 
 /**
  * Executes a list of queries asynchronously, handling errors individually.
@@ -66,6 +84,10 @@ const querySelector = async ({
   keyReference,
   documentData,
 }) => {
+  if (WRITE_QUERY_TYPES.includes(queryType) && documentData) {
+    validateDocument(collectionName, queryType, documentData);
+  }
+
   switch (queryType) {
     case "obtainRealTime":
       // Executes a real-time query with optional conditions
