@@ -15,12 +15,14 @@ export default {
   output: [
     {
       file: "dist/index.js",
-      format: "cjs", // CommonJS (para Node.js)
+      format: "cjs",
+      exports: "named",
       sourcemap: true,
     },
     {
       file: "dist/index.esm.js",
-      format: "es", // ESModules (para React y Vite)
+      format: "es",
+      exports: "named",
       sourcemap: true,
     },
   ],
@@ -31,7 +33,7 @@ export default {
     commonjs(),
     json(),
     babel({ babelHelpers: "bundled" }),
-    terser(), // Minifica el código
+    terser(),
     commonjs({
       include: "node_modules/**",
     }),

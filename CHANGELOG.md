@@ -11,12 +11,39 @@ Format: [Semantic Versioning](https://semver.org/) — `MAJOR.MINOR.PATCH`
 ## [0.9.0] — 2026-06-18
 
 ### Added
-- Zod validation layer: register schemas per collection via `initializeFiredux(config, { schemas: {} })`
-- `validateDocument` runs before `addDocument` and `updateDocument`; reads are not validated
-- Clear error format: `[firedux-storage] Validation failed for collection "X" (queryType):\n  - field: message`
-- Re-export `z` from `firedux-storage` so consumers can import Zod without installing it separately
-- `schemaRegistry.js` singleton (`getSchema`, `registerSchemas`, `clearRegistry`)
-- Backward compatible: collections without a registered schema behave exactly as before
+- **Zod validation layer** — register schemas per collection in `initializeFiredux`:
+  ```js
+  import { z, initializeFiredux } from 'firedux-storage';
+  initializeFiredux(firebaseConfig, {
+    schemas: {
+      todos: z.object({ title: z.string().min(1), status: z.enum(['pending', 'completed']) }),
+    },
+  });
+  ```
+- Validation runs automatically before `addDocument` and `updateDocument`. Reads (`getCollectionData`, `obtainRealTime`, `getDocumentById`) and `removeDocument` are never validated.
+- Backward compatible: collections without a registered schema behave exactly as before — no schema, no validation, no error.
+- `z` re-exported from `firedux-storage` — consumers do not need to install `zod` separately.
+- `schemaRegistry.js` singleton (`registerSchemas`, `getSchema`, `clearRegistry`).
+
+### Error format
+When validation fails, `executeQueries` rejects with a structured error:
+```
+[firedux-storage] Validation failed for collection "todos" (addDocument):
+  - title: String must contain at least 1 character(s)
+  - status: Invalid enum value. Expected 'pending' | 'completed', received 'done'
+```
+Each issue is on its own line, prefixed with the field path and Zod's message.
+
+### Breaking change
+`FireduxStorage` is now a **named export** instead of a default export. Update imports:
+```js
+// Before (0.8.x)
+import FireduxStorage, { initializeFiredux } from 'firedux-storage';
+
+// After (0.9.0)
+import { FireduxStorage, initializeFiredux } from 'firedux-storage';
+```
+Named exports (`executeQueries`, `initializeFiredux`, `z`) are unchanged.
 
 ---
 

@@ -10,13 +10,18 @@
     "require": "./dist/index.js"
   },
   "files": [
-    "dist/**/*"
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
   ],
   "private": false,
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c --watch",
-    "test": "echo \"No tests defined yet\" && exit 1"
+    "test": "echo \"No tests defined yet\" && exit 1",
+    "prepack": "cp ../../LICENSE . && cp ../../CHANGELOG.md .",
+    "postpack": "rm -f LICENSE CHANGELOG.md"
   },
   "keywords": [
     "redux",

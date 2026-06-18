@@ -24,7 +24,6 @@ const initializeFiredux = (firebaseConfig, options = {}) => {
   store = initializeStore();
 };
 
-// Export Firedux object
 const FireduxStorage = {
   executeQueries,
   initializeFiredux,
@@ -38,5 +37,4 @@ const FireduxStorage = {
   },
 };
 
-export default FireduxStorage;
-export { executeQueries, initializeFiredux };
+export { FireduxStorage, executeQueries, initializeFiredux };
