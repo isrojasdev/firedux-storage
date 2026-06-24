@@ -5,9 +5,9 @@
 
 ## Estado actual
 
-**Fase activa:** FASE 3 — Testing con Vitest
-**Versión en npm:** 1.0.0
-**Próximo bump:** 1.0.1 (patch) al terminar Fase 3
+**Fase activa:** FASE 4 — TypeScript (type declarations)
+**Versión en npm:** 1.0.0 → próximo release: 1.0.1
+**Próximo bump:** 1.0.1 (patch) — listo para publicar
 
 ---
 
@@ -49,19 +49,19 @@
 
 ---
 
-## FASE 3 — Testing con Vitest
+## FASE 3 — Testing con Vitest ✅
 **Objetivo:** Tests automáticos para cada feature, sin acceso a red.
 **Versión objetivo:** 1.0.1
 
-- [ ] Instalar y configurar Vitest en `packages/core`
-- [ ] Añadir `"test": "vitest run"` en `packages/core/package.json`
-- [ ] `schemaRegistry.test.js`
-- [ ] `buildQueryParameters.test.js`
-- [ ] `database.test.js` (CRUD mockeado)
-- [ ] `realtime.test.js` (onSnapshot mockeado)
-- [ ] `storage.test.js`
-- [ ] `auth.test.js`
-- [ ] GitHub Actions: correr tests en cada PR
+- [x] Instalar y configurar Vitest en `packages/core`
+- [x] Añadir `"test": "vitest run"` en `packages/core/package.json`
+- [x] `schemaRegistry.test.js`
+- [x] `buildQueryParameters.test.js`
+- [x] `executeQueries.test.js` (routing + validación Zod)
+- [x] `realtime.test.js` (onSnapshot mockeado)
+- [x] `storage.test.js`
+- [x] `auth.test.js`
+- [x] GitHub Actions: correr tests en cada PR (`.github/workflows/test.yml`)
 
 ---
 

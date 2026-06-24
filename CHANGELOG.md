@@ -8,6 +8,15 @@ Format: [Semantic Versioning](https://semver.org/) — `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.0.1] — 2026-06-23
+
+### Added
+- Vitest test suite: 42 tests across 6 files (`schemaRegistry`, `buildQueryParameters`, `executeQueries`, `auth`, `storage`, `realtime`)
+- GitHub Actions workflow: runs tests on every push/PR to `main` and `develop`
+- `vitest.config.js` in `packages/core`
+
+---
+
 ## [1.0.0] — 2026-06-18
 
 ### Added
