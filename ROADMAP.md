@@ -5,9 +5,9 @@
 
 ## Estado actual
 
-**Fase activa:** FASE 5 — Documentación
-**Versión en npm:** 1.0.0 → próximo release: 1.1.0
-**Próximo bump:** 1.1.0 (minor) — listo para publicar
+**Fase activa:** FASE 6 — Ejemplos por framework
+**Versión en npm:** 1.0.0 → próximo release: 1.1.1
+**Próximo bump:** 1.1.1 (patch) — listo para publicar
 
 ---
 
@@ -76,15 +76,15 @@
 
 ---
 
-## FASE 5 — Documentación
+## FASE 5 — Documentación ✅
 **Objetivo:** README completo, sin inconsistencias, con todos los features.
 **Versión objetivo:** 1.1.1
 
-- [ ] Corregir inconsistencia: README dice `deleteDocument`, código usa `removeDocument`
-- [ ] Actualizar README con API completa (auth, storage, db, Zod)
-- [ ] Tabla de `queryType` con parámetros requeridos/opcionales
-- [ ] Sección de uso con TypeScript
-- [ ] Sección de validación con Zod
+- [x] Corregir inconsistencia: README decía `deleteDocument`, código usa `removeDocument`
+- [x] Actualizar README con API completa (auth, storage, db, Zod)
+- [x] Tabla de `queryType` con parámetros requeridos/opcionales
+- [x] Sección de uso con TypeScript
+- [x] Sección de validación con Zod
 
 ---
 

@@ -1,6 +1,6 @@
 {
   "name": "firedux-storage",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "JS library for Redux management with Firebase without the need for many configurations",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

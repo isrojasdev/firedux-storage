@@ -8,6 +8,19 @@ Format: [Semantic Versioning](https://semver.org/) — `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.1.1] — 2026-06-23
+
+### Changed
+- README reescrito completamente con API completa:
+  - Tabla de todos los `queryType` con parámetros requeridos/opcionales
+  - Ejemplos para Firestore (reads y writes), Auth, Storage
+  - Sección de validación con Zod
+  - Sección de TypeScript (tipos disponibles)
+  - Redux state shape documentada
+  - Corregida inconsistencia: `deleteDocument` → `removeDocument`
+
+---
+
 ## [1.1.0] — 2026-06-23
 
 ### Added
