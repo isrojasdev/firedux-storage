@@ -5,9 +5,9 @@
 
 ## Estado actual
 
-**Fase activa:** FASE 6 — Ejemplos por framework
-**Versión en npm:** 1.0.0 → próximo release: 1.1.1
-**Próximo bump:** 1.1.1 (patch) — listo para publicar
+**Fase activa:** — Roadmap completo ✅
+**Versión en npm:** 1.0.0 → próximo release: 1.1.2
+**Próximo bump:** 1.1.2 (patch) — listo para publicar
 
 ---
 
@@ -88,15 +88,15 @@
 
 ---
 
-## FASE 6 — Ejemplos por framework
+## FASE 6 — Ejemplos por framework ✅
 **Objetivo:** Ejemplo funcional para cada framework soportado.
 **Versión objetivo:** 1.1.2
 
-- [ ] `example-react` — completar con auth + storage + Zod validation
-- [ ] `example-simple` — HTML vanilla completo
-- [ ] `example-vue` — implementar desde el esqueleto existente
-- [ ] `example-angular` — implementar desde el esqueleto existente
-- [ ] `example-nextjs` — nuevo, demostrar SSR
+- [x] `example-react` — auth (Google) + Zod schema en initializeFiredux
+- [x] `example-simple` — Vite vanilla JS: real-time, CRUD, auth, Zod
+- [x] `example-vue` — Vue 3 Composition API + composable `useSelector`
+- [x] `example-angular` — Angular 18 `FireduxService` con RxJS BehaviorSubject
+- [x] `example-nextjs` — Next.js 15 App Router con `FireduxProvider` + `'use client'`
 
 ---
 

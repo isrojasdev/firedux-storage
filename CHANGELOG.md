@@ -8,6 +8,17 @@ Format: [Semantic Versioning](https://semver.org/) — `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.1.2] — 2026-06-23
+
+### Added
+- **example-react**: Auth section (Google sign-in/sign-out via `signInGoogle`/`signOut`) + Zod schema para colección `todos` en `initializeFiredux`
+- **example-simple**: Reescrito como Vite vanilla JS — real-time listener, add/delete, Google auth, Zod validation, `store.subscribe` para re-render
+- **example-vue**: Nuevo ejemplo Vue 3 + Vite con Composition API — composable `useSelector` que bridge Redux → `ref` reactivo
+- **example-angular**: Nuevo ejemplo Angular 18 — `FireduxService` que expone `todos$` / `user$` como `BehaviorSubject` (RxJS)
+- **example-nextjs**: Nuevo ejemplo Next.js 15 App Router — `FireduxProvider` (Client Component) wrapping `react-redux Provider`, `'use client'` TodoList con `useSelector`
+
+---
+
 ## [1.1.1] — 2026-06-23
 
 ### Changed

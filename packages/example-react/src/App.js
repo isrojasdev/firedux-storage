@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { executeQueries } from "firedux-storage";
 import TodoModal from "./components/TodoModal";
 import TodoTable from "./components/TodoTable";
+import AuthSection from "./components/AuthSection";
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -101,6 +102,8 @@ const App = () => {
   return (
     <div className="App">
       <h1>To-Do List</h1>
+
+      <AuthSection />
 
       {isLoading && <div className="loader">Loading...</div>}
 

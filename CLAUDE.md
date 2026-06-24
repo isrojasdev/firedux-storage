@@ -147,5 +147,5 @@ For breaking changes, the CHANGELOG entry must include a `### Migration` subsect
 
 ## Current phase
 
-**Active phase:** FASE 6 — Ejemplos por framework (versión objetivo: 1.1.2)
+**Active phase:** Roadmap completo ✅ — mantenimiento y mejoras incrementales
 See [ROADMAP.md](./ROADMAP.md) for full roadmap and task status.
