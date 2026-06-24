@@ -1,6 +1,24 @@
-# Getting Started with Create React App
+# firedux-storage — React Example (CRA)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Demo de `firedux-storage` con Create React App y yarn workspaces.
+
+## Workflow correcto
+
+**Siempre usar yarn desde la raíz del monorepo** — nunca `npm install` dentro de esta carpeta (npm no entiende el protocolo `workspace:*`).
+
+```sh
+# Desde la raíz del repo
+yarn install                   # una sola vez
+npm run dev:react              # rebuild core + arranca CRA
+```
+
+Si ves errores del tipo `'z' is not exported from 'firedux-storage'` o `'FireduxStorage' was not found`, hay una versión stale de la librería en node_modules. Límpiala:
+
+```sh
+rm -rf packages/example-react/node_modules/firedux-storage
+yarn install
+npm run dev:react
+```
 
 ## Available Scripts
 

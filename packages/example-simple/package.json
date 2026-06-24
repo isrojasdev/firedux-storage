@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "firedux-storage": "workspace:*"
+    "firedux-storage": "*"
   },
   "devDependencies": {
     "vite": "^6.0.0"

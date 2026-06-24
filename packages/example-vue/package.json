@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "firedux-storage": "workspace:*",
+    "firedux-storage": "*",
     "vue": "^3.4.0"
   },
   "devDependencies": {
