@@ -6,8 +6,8 @@
 ## Estado actual
 
 **Fase activa:** FASE 3 — Testing con Vitest
-**Versión en npm:** 0.9.0 → próximo release: 1.0.0
-**Próximo bump:** 1.0.0 (major) — listo para publicar
+**Versión en npm:** 1.0.0
+**Próximo bump:** 1.0.1 (patch) al terminar Fase 3
 
 ---
 
