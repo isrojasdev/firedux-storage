@@ -45,9 +45,17 @@ const validateDocument = (collectionName, queryType, documentData) => {
 };
 
 /**
- * Executes a list of queries asynchronously, handling errors individually.
- * @param {Array} queryList - List of query objects to execute.
- * @returns {Promise<Array>} Results array with { result, status } or { error, status }.
+ * @typedef {'obtainRealTime'|'getDocumentById'|'getCollectionData'|'addDocument'|'removeDocument'|'updateDocument'|'signInEmail'|'signUpEmail'|'signInGoogle'|'signInFacebook'|'signOut'|'resetPassword'|'uploadFile'|'deleteFile'} QueryType
+ *
+ * @typedef {{ queryType: QueryType, collectionName?: string, documentId?: string, documentData?: Record<string, any>, whereCondition?: any, orderByCondition?: any, limitCondition?: number, storeAs?: string, keyReference?: string[], email?: string, password?: string, file?: File, fileName?: string, folder?: string, fileUrl?: string }} QueryObject
+ *
+ * @typedef {{ status: 'succeeded'|'failed', result?: any, error?: string }} QueryResult
+ */
+
+/**
+ * Executes a list of Firebase queries in parallel, handling errors per query.
+ * @param {QueryObject[]} queryList - Array of query descriptors.
+ * @returns {Promise<QueryResult[]>} One result per query.
  */
 export const executeQueries = async (queryList) => {
   if (!Array.isArray(queryList) || queryList.length === 0) {

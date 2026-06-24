@@ -8,6 +8,24 @@ Format: [Semantic Versioning](https://semver.org/) — `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.1.0] — 2026-06-23
+
+### Added
+- **TypeScript support:** `dist/index.d.ts` generado automáticamente con `tsc --allowJs --emitDeclarationOnly`
+- Tipos públicos: `FirebaseConfig`, `FireduxOptions`, `QueryType`, `QueryObject`, `QueryResult`, `AuthUser`
+- `"types": "dist/index.d.ts"` en `package.json` — los consumidores TS tienen autocompletado sin instalar tipos extra
+- JSDoc completo en `index.js`, `Queries.js` y `auth.js`
+- Script `"build:types": "tsc"` para regenerar solo los tipos
+- `tsconfig.json` en `packages/core`
+
+### Usage (TypeScript)
+```ts
+import { initializeFiredux, executeQueries } from 'firedux-storage';
+// Tipos inferidos automáticamente — no se necesita @types/firedux-storage
+```
+
+---
+
 ## [1.0.1] — 2026-06-23
 
 ### Added

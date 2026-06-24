@@ -147,5 +147,5 @@ For breaking changes, the CHANGELOG entry must include a `### Migration` subsect
 
 ## Current phase
 
-**Active phase:** FASE 3 — Testing con Vitest (versión objetivo: 1.0.1)
+**Active phase:** FASE 5 — Documentación (versión objetivo: 1.1.1)
 See [ROADMAP.md](./ROADMAP.md) for full roadmap and task status.

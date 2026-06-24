@@ -11,10 +11,16 @@ export { z } from "zod";
 let store = null;
 
 /**
- * Initializes Firedux Storage with Firebase.
- * @param {Object} firebaseConfig - Firebase configuration object.
- * @param {Object} [options={}] - Optional configuration.
- * @param {Object} [options.schemas] - Zod schemas keyed by collection name.
+ * @typedef {{ apiKey: string, authDomain: string, projectId: string, storageBucket: string, messagingSenderId: string, appId: string }} FirebaseConfig
+ * @typedef {{ schemas?: Record<string, import('zod').ZodTypeAny> }} FireduxOptions
+ */
+
+/**
+ * Initializes Firedux Storage with Firebase and optional Zod schemas.
+ * Must be called once before any `executeQueries` call.
+ * @param {FirebaseConfig} firebaseConfig - Firebase project configuration.
+ * @param {FireduxOptions} [options={}] - Optional configuration.
+ * @returns {void}
  */
 const initializeFiredux = (firebaseConfig, options = {}) => {
   initializeFirebase(firebaseConfig);

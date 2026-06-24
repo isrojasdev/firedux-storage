@@ -5,9 +5,9 @@
 
 ## Estado actual
 
-**Fase activa:** FASE 4 — TypeScript (type declarations)
-**Versión en npm:** 1.0.0 → próximo release: 1.0.1
-**Próximo bump:** 1.0.1 (patch) — listo para publicar
+**Fase activa:** FASE 5 — Documentación
+**Versión en npm:** 1.0.0 → próximo release: 1.1.0
+**Próximo bump:** 1.1.0 (minor) — listo para publicar
 
 ---
 
@@ -65,14 +65,14 @@
 
 ---
 
-## FASE 4 — TypeScript (type declarations)
+## FASE 4 — TypeScript (type declarations) ✅
 **Objetivo:** Soporte de tipos para consumidores TS sin migrar el código a TS.
 **Versión objetivo:** 1.1.0
 
-- [ ] Crear `packages/core/tsconfig.json` (emitDeclarationOnly)
-- [ ] Añadir `"types": "dist/index.d.ts"` en `packages/core/package.json`
-- [ ] Anotar con JSDoc: `index.js`, `Queries.js`, `auth.js`
-- [ ] Tipos clave: `FirebaseConfig`, `FireduxOptions`, `QueryObject`, `QueryType`
+- [x] Crear `packages/core/tsconfig.json` (emitDeclarationOnly)
+- [x] Añadir `"types": "dist/index.d.ts"` en `packages/core/package.json`
+- [x] Anotar con JSDoc: `index.js`, `Queries.js`, `auth.js`
+- [x] Tipos clave: `FirebaseConfig`, `FireduxOptions`, `QueryObject`, `QueryType`, `QueryResult`, `AuthUser`
 
 ---
 
