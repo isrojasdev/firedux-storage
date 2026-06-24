@@ -8,6 +8,16 @@ Format: [Semantic Versioning](https://semver.org/) — `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.1.3] — 2026-06-23
+
+### Fixed
+- `z` ya no es `undefined` al importar desde `firedux-storage` en entornos webpack/CRA.
+  - **Causa:** rollup intentaba bundlear zod v4 (ESM nativo) en el bundle CJS y fallaba silenciosamente — `exports.z` existía pero sin valor asignado.
+  - **Fix:** zod marcado como `external` en rollup. El CJS bundle ahora tiene `require("zod")` y el ESM bundle tiene `import { z } from "zod"`. Zod sigue en `dependencies` así que se instala automáticamente.
+  - El warning de circular dependency en zod (durante el build) también desaparece.
+
+---
+
 ## [1.1.2] — 2026-06-23
 
 ### Added

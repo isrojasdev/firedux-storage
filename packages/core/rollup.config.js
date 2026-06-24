@@ -38,5 +38,5 @@ export default {
       include: "node_modules/**",
     }),
   ],
-  external: ["redux", "firebase"],
+  external: ["redux", "firebase", "zod"],
 };
