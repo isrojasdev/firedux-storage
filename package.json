@@ -10,7 +10,8 @@
     "dev:react": "npm -w packages/core run build && npm -w packages/example-react start",
     "dev:simple": "npm -w packages/example-simple run dev",
     "dev:vue": "npm -w packages/example-vue run dev",
-    "dev:nextjs": "npm -w packages/example-nextjs run dev"
+    "dev:nextjs": "npm -w packages/example-nextjs run dev",
+    "dev:react-ts": "npm -w packages/core run build && npm -w packages/example-react-ts run dev"
   },
   "dependencies": {
     "dotenv": "^16.4.7",

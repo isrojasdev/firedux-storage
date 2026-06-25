@@ -1,10 +1,18 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { FireduxStorage, initializeFiredux } from "firedux-storage";
+import { firebaseConfig } from "./config/firebase";
+import { todoSchema } from "./config/schemas";
+import App from "./App";
+import "./index.css";
 
-createRoot(document.getElementById('root')!).render(
+initializeFiredux(firebaseConfig, { schemas: { todos: todoSchema } });
+
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <Provider store={FireduxStorage.store}>
+      <App />
+    </Provider>
+  </StrictMode>
+);
